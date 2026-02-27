@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "EventMonitor Hydrus Importer",
+  "version": "0.1.0",
+  "description": "Import images from Pixiv and Twitter/X to Hydrus Network with EventMonitor-compatible tags",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:45869/*",
+    "http://localhost:45869/*",
+    "https://www.pixiv.net/*",
+    "https://i.pximg.net/*",
+    "https://pbs.twimg.com/*",
+    "https://x.com/*",
+    "https://twitter.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.pixiv.net/artworks/*",
+        "https://www.pixiv.net/*/artworks/*"
+      ],
+      "js": ["content/pixiv.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+      ],
+      "js": ["content/twitter.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}
