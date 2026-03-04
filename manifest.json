@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "EventMonitor Hydrus Importer",
   "version": "0.1.0",
-  "description": "Import images from Pixiv and Twitter/X to Hydrus Network with EventMonitor-compatible tags",
+  "description": "Import images from Pixiv, Twitter/X, and Bluesky to Hydrus Network with EventMonitor-compatible tags",
   "permissions": [
     "storage",
     "activeTab"
@@ -14,7 +14,10 @@
     "https://i.pximg.net/*",
     "https://pbs.twimg.com/*",
     "https://x.com/*",
-    "https://twitter.com/*"
+    "https://twitter.com/*",
+    "https://bsky.app/*",
+    "https://cdn.bsky.app/*",
+    "https://public.api.bsky.app/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -34,6 +37,13 @@
         "https://twitter.com/*"
       ],
       "js": ["content/twitter.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://bsky.app/*"
+      ],
+      "js": ["content/bluesky.js"],
       "run_at": "document_idle"
     }
   ],
