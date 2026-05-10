@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "EventMonitor Hydrus Importer",
-  "version": "0.1.0",
-  "description": "Import images from Pixiv, Twitter/X, and Bluesky to Hydrus Network with EventMonitor-compatible tags",
+  "version": "0.1.1",
+  "description": "Import images from Pixiv, Twitter/X, Bluesky, Danbooru, and Gelbooru to Hydrus Network with EventMonitor-compatible tags",
   "permissions": [
     "storage",
     "activeTab"
@@ -17,7 +17,11 @@
     "https://twitter.com/*",
     "https://bsky.app/*",
     "https://cdn.bsky.app/*",
-    "https://public.api.bsky.app/*"
+    "https://public.api.bsky.app/*",
+    "https://danbooru.donmai.us/*",
+    "https://cdn.donmai.us/*",
+    "https://gelbooru.com/*",
+    "https://*.gelbooru.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -44,6 +48,20 @@
         "https://bsky.app/*"
       ],
       "js": ["content/bluesky.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://danbooru.donmai.us/posts/*"
+      ],
+      "js": ["content/danbooru.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://gelbooru.com/*"
+      ],
+      "js": ["content/gelbooru.js"],
       "run_at": "document_idle"
     }
   ],
